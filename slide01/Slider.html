@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Slider</title>
+<style type="text/css">
+/* reset */
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{margin:0;padding:0;}
+html{-webkit-text-size-adjust:none;}
+body{background-color:#559eea;font:12px/2em Microsoft Yahei,tahoma,HELVETICA;text-align:center;color:#333;}
+ol,ul{list-style:none;}
+h1,h2,h3,h4,h5,h6{font-size:100%;}
+img{border:none;vertical-align:top}
+i,em{font-style:normal;}
+input,select,option,textarea{font-size:12px; font-family: Microsoft Yahei,tahoma,HELVETICA;outline:none;}
+a{color:#333;text-decoration:none;}
+a:hover{color:#f80;text-decoration:underline;}
+a:hover em,a:hover b, a:hover i, a:hover span {cursor:pointer;}
+
+.container {
+	width: 350px;
+	margin:100px auto;
+}
+.slide-wrapper {
+	width: 350px;
+	height: 200px;
+	overflow: hidden;
+	position: relative;
+}
+.slide-content {
+	width: 10000px;
+	height: 350px;
+}
+.slide-content li {
+	float: left;
+	display: inline;
+}
+.slide-content li a {
+	display: block;
+	position: relative;
+}
+.slide-content li a span {
+	display: block;
+	position: absolute;
+	bottom: 0;
+	height: 30px;
+	width: 100%;
+	line-height: 30px;
+	text-align: center;
+	opacity: 0.6;
+	filter: alpha(opacity=60);
+	background-color: #000;
+	color: #fff;
+	font-size: 14px;
+}
+
+.slide-control-arrow {
+
+}
+.slide-control-dot {
+	margin:5px 0;
+	text-align: center;
+	height: 10px;
+}
+.slide-control-dot-wrapper {
+	margin-left: 10px;
+	overflow: hidden;
+	display: inline-block;
+}
+.slide-control-dot .item {
+	width: 10px;
+	height: 10px;
+	border-radius: 5px;
+	background-color: #ddd;
+	display: block;
+	float: left;
+	margin-right: 10px;
+}
+.prev, .next {
+	width: 26px;
+	height: 51px;
+	margin-top: -25px;
+	background-image: url(arrow.png);
+	background-repeat: no-repeat;
+	position: absolute;
+	top: 50%;
+	z-index: 2;
+}
+.prev {
+	left:0;
+	background-position: 0 0;
+}
+.prev:hover {
+	background-position: -54px 0;
+}
+.next {
+	right: 0;
+	background-position: -27px 0;
+}
+.next:hover {
+	background-position: -81px 0;
+}
+.show {
+	display: block;
+}
+.hide {
+	display: none;
+}
+</style>
+</head>
+<body>
+	<div class="container">
+		<div class="slide" id="Jslide">
+			<div class="slide-wrapper">
+				<ul class="slide-content">
+					<li>
+						<a href="#" target="_blank">
+							<img width="350" height="200" alt="" src="http://dummyimage.com/350x200/f1f1f1/999" />
+							<span class="title-alpha">标题1</span>
+						</a>
+					</li>
+					<li>
+						<a href="#" target="_blank">
+							<img width="350" height="200" alt="" src="http://dummyimage.com/350x200/bababa/999" />
+							<span class="title-alpha">标题2</span>
+						</a>
+					</li>
+					<li>
+						<a href="#" target="_blank">
+							<img width="350" height="200" alt="" src="http://dummyimage.com/350x200/a1afa1/999" />
+							<span class="title-alpha">标题3</span>
+						</a>
+					</li>
+				</ul>
+				<div class="slide-control-arrow hide" id="Jshow">
+					<a href="javascript:;" class="prev"></a>
+					<a href="javascript:;" class="next"></a>
+				</div>
+			</div>
+			<div class="slide-control-dot" id="Jitems">
+				<div class="slide-control-dot-wrapper">
+					<i class="item current"></i>
+					<i class="item"></i>
+					<i class="item"></i>
+				</div>
+			</div>
+		</div>
+	</div>
+<script type="text/javascript">
+var slide = document.getElementById('Jslide');
+var arrow = document.getElementById('Jshow');
+var items = document.getElementById('Jitems');
+var arrows = Jshow.getElementsByTagName('a');
+var slideContent = slide.getElementsByTagName('ul');
+var pics = Jslide.getElementsByTagName('li');
+
+var length = pics.length;
+//console.log(length);
+
+var moveWidth = 350;
+
+slide.onmouseover = function() {arrow.className = 'slide-control-arrow show';}
+slide.onmouseout = function() {arrow.className = 'slide-control-arrow hide';}
+
+arrows[0].onclick = function() {
+	// console.log('you have click a prev btn');
+	slideContent[0].style.marginLeft = -moveWidth + 'px';
+}
+arrows[1].onclick = function() {
+	// console.log('you have click a next btn');
+	slideContent[0].style.marginLeft = moveWidth + 'px';
+}
+
+</script>
+</body>
+</html>
