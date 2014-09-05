@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>倒计时原生js</title>
+</head>
+<body>
+<div class="countdown" id="countdown">
+	<h2>距离国庆节还有</h2>
+	<span id="c-day"></span> 日 <span id="c-hour"></span> 时 <span id="c-min"></span> 分 <span id="c-sec"></span> 秒
+</div>
+<script type="text/javascript">
+function cd() {
+	var currDate = new Date();
+	var targetDate = new Date(2014, 9, 1, 0, 0, 0);
+
+	var iDay = 0,
+		iHour = 0,
+		iMin = 0,
+		iSec = 0;
+
+	var cDay = document.getElementById('c-day'),
+		cHour = document.getElementById('c-hour'),
+		cMin = document.getElementById('c-min'),
+		cSec = document.getElementById('c-sec');
+
+	var currTime = currDate.getTime();
+	var targetTime = targetDate.getTime();
+
+	var intervalTime = targetTime - currTime;
+	intervalTime = intervalTime/1000;
+
+	if (intervalTime <= 0) {
+		clearInterval(cd);
+		cDay.innerHTML = cHour.innerHTML = cMin.innerHTML = cSec.innerHTML = 0;
+	}
+	else {
+		iDay = parseInt(intervalTime / 86400);
+		intervalTime %= 86400;
+
+		iHour = parseInt(intervalTime / 3600);
+		intervalTime %= 3600;
+
+		iMin = parseInt(intervalTime / 60);
+		intervalTime %= 60;
+
+		iSec = parseInt(intervalTime);
+
+		cDay.innerHTML = iDay;
+		cHour.innerHTML = iHour;
+		cMin.innerHTML = iMin;
+		cSec.innerHTML = iSec;
+	}
+}
+setInterval(cd, 100); //每隔100ms执行一次(如果间隔时间过长需要下面一条)
+cd(); //加载页面后立即执行(当计时器间隔时间过长需用到)
+</script>
+</body>
+</html>
